@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>公司简介</title>
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:
+      "PingFang SC",
+      "Microsoft YaHei",
+      sans-serif;
+      background:#f4f6f9;
+      color:#222;
+      line-height:1.8;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    /* 顶部导航 */
+    .navbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:70px;
+      background:rgba(0,0,0,0.45);
+      backdrop-filter:blur(10px);
+      z-index:999;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 60px;
+    }
+
+    .logo{
+      font-size:26px;
+      font-weight:700;
+      color:#fff;
+      letter-spacing:2px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:35px;
+    }
+
+    .nav-links a{
+      color:#fff;
+      font-size:15px;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      opacity:0.7;
+    }
+
+    /* Banner */
+    .hero{
+      height:100vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),
+      url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1920&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#fff;
+      padding:20px;
+    }
+
+    .hero-content h1{
+      font-size:64px;
+      margin-bottom:20px;
+      letter-spacing:4px;
+    }
+
+    .hero-content p{
+      font-size:22px;
+      opacity:0.9;
+      margin-bottom:40px;
+    }
+
+    .hero-btn{
+      display:inline-block;
+      padding:14px 38px;
+      border:1px solid #fff;
+      border-radius:50px;
+      transition:0.3s;
+      font-size:15px;
+    }
+
+    .hero-btn:hover{
+      background:#fff;
+      color:#000;
+    }
+
+    /* 内容区域 */
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    .section{
+      padding:100px 0;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:40px;
+      color:#111;
+      margin-bottom:15px;
+    }
+
+    .section-title p{
+      color:#777;
+    }
+
+    /* 关于我们 */
+    .about{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:50px;
+      align-items:center;
+    }
+
+    .about img{
+      width:100%;
+      border-radius:18px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .about-text h3{
+      font-size:30px;
+      margin-bottom:20px;
+    }
+
+    .about-text p{
+      color:#666;
+      margin-bottom:20px;
+    }
+
+    /* 业务卡片 */
+    .services{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+    }
+
+    .service-card{
+      background:#fff;
+      border-radius:18px;
+      padding:40px 30px;
+      transition:0.3s;
+      box-shadow:0 6px 20px rgba(0,0,0,0.05);
+    }
+
+    .service-card:hover{
+      transform:translateY(-8px);
+    }
+
+    .service-card h3{
+      margin-bottom:18px;
+      font-size:24px;
+    }
+
+    .service-card p{
+      color:#666;
+    }
+
+    /* 数据区域 */
+    .stats{
+      background:#0f172a;
+      color:#fff;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:30px;
+      text-align:center;
+    }
+
+    .stat-item h3{
+      font-size:48px;
+      margin-bottom:10px;
+    }
+
+    .stat-item p{
+      color:#cbd5e1;
+    }
+
+    /* 联系方式 */
+    .contact-box{
+      background:#fff;
+      border-radius:20px;
+      padding:50px;
+      box-shadow:0 6px 30px rgba(0,0,0,0.06);
+      text-align:center;
+    }
+
+    .contact-box p{
+      margin:12px 0;
+      color:#555;
+      font-size:17px;
+    }
+
+    footer{
+      background:#111827;
+      color:#9ca3af;
+      text-align:center;
+      padding:30px 20px;
+      margin-top:80px;
+    }
+
+    /* 手机端 */
+    @media(max-width:900px){
+
+      .navbar{
+        padding:0 25px;
+      }
+
+      .nav-links{
+        gap:18px;
+      }
+
+      .hero-content h1{
+        font-size:42px;
+      }
+
+      .hero-content p{
+        font-size:18px;
+      }
+
+      .about{
+        grid-template-columns:1fr;
+      }
+
+      .section{
+        padding:70px 0;
+      }
+
+      .section-title h2{
+        font-size:32px;
+      }
+
+      .contact-box{
+        padding:35px 25px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- 导航 -->
+  <nav class="navbar">
+    <div class="logo">COMPANY</div>
+
+    <div class="nav-links">
+      <a href="#about">关于我们</a>
+      <a href="#services">业务范围</a>
+      <a href="#stats">企业实力</a>
+      <a href="#contact">联系我们</a>
+    </div>
+  </nav>
+
+  <!-- Banner -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>创新 · 专业 · 共赢</h1>
+      <p>专注高品质服务与数字化创新解决方案</p>
+      <a href="#about" class="hero-btn">了解更多</a>
+    </div>
+  </section>
+
+  <!-- 关于我们 -->
+  <section class="section" id="about">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>关于我们</h2>
+        <p>ABOUT COMPANY</p>
+      </div>
+
+      <div class="about">
+        <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop" alt="公司">
+
+        <div class="about-text">
+          <h3>打造值得信赖的品牌</h3>
+
+          <p>
+            公司成立于 2026 年，专注于互联网技术、企业服务与数字化解决方案，
+            致力于为客户提供高效、稳定、创新的服务体验。
+          </p>
+
+          <p>
+            我们坚持以客户需求为核心，不断提升产品品质与服务能力，
+            帮助企业实现品牌升级与业务增长。
+          </p>
+
+          <p>
+            凭借专业团队与先进技术，公司已服务多个行业客户，
+            在市场中建立了良好的品牌口碑。
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 业务 -->
+  <section class="section" id="services">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>业务范围</h2>
+        <p>OUR SERVICES</p>
+      </div>
+
+      <div class="services">
+
+        <div class="service-card">
+          <h3>网站开发</h3>
+          <p>
+            提供企业官网、品牌展示网站、响应式页面开发，
+            支持 PC 与移动端访问。
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h3>系统开发</h3>
+          <p>
+            提供后台管理系统、数据平台、
+            定制化业务系统解决方案。
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h3>品牌设计</h3>
+          <p>
+            包括企业形象设计、UI 视觉设计、
+            品牌升级与宣传展示。
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h3>技术咨询</h3>
+          <p>
+            提供数字化转型建议、
+            技术架构规划与项目实施支持。
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 数据 -->
+  <section class="section stats" id="stats">
+    <div class="container">
+
+      <div class="stats-grid">
+
+        <div class="stat-item">
+          <h3>100+</h3>
+          <p>服务客户</p>
+        </div>
+
+        <div class="stat-item">
+          <h3>50+</h3>
+          <p>合作项目</p>
+        </div>
+
+        <div class="stat-item">
+          <h3>10+</h3>
+          <p>行业经验</p>
+        </div>
+
+        <div class="stat-item">
+          <h3>99%</h3>
+          <p>客户满意度</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 联系 -->
+  <section class="section" id="contact">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>联系我们</h2>
+        <p>CONTACT US</p>
+      </div>
+
+      <div class="contact-box">
+
+        <p>📍 地址：XX市XX区XX大道88号</p>
+        <p>📞 电话：123-456-7890</p>
+        <p>📧 邮箱：contact@company.com</p>
+        <p>🌐 官网：www.company.com</p>
+
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    © 2026 COMPANY 版权所有
+  </footer>
+
+</body>
+</html>
