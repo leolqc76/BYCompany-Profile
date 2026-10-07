@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>电气成套设备制造公司</title>
+  <!-- 首屏大图预加载：走 jsDelivr CDN，国内访问更快 -->
+  <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/leolqc76/BYCompany-Profile@main/images/000.webp" />
 
   <style>
     *{
@@ -345,7 +347,7 @@
   <!-- 导航 -->
   <nav class="navbar">
     <div class="logo">
-      <img src="images/logo.png" alt="LOGO">
+      <img src="https://cdn.jsdelivr.net/gh/leolqc76/BYCompany-Profile@main/images/logo.webp" alt="LOGO" fetchpriority="high">
 	</div>
 
     <div class="nav-links" id="navLinks">
@@ -382,7 +384,7 @@
       </div>
 
       <div class="about">
-        <img src="images/0.jpeg" alt="电气设备">
+        <img src="https://cdn.jsdelivr.net/gh/leolqc76/BYCompany-Profile@main/images/0.webp" alt="电气设备" loading="lazy" decoding="async">
 
         <div class="about-text">
           <h3>打造值得信赖的电气品牌</h3>
@@ -414,25 +416,25 @@
       <div class="services">
 
         <div class="service-card">
-          <img src="images/electricity.png" alt="成套设备">
+          <img src="https://cdn.jsdelivr.net/gh/leolqc76/BYCompany-Profile@main/images/electricity.png" alt="成套设备" loading="lazy" decoding="async">
           <h3>成套设备制造</h3>
           <p>高低压配电柜、控制柜、箱式变电站等设备制造。</p>
         </div>
 
         <div class="service-card">
-          <img src="images/auto.webp" alt="自动化">
+          <img src="https://cdn.jsdelivr.net/gh/leolqc76/BYCompany-Profile@main/images/auto.webp" alt="自动化" loading="lazy" decoding="async">
           <h3>智能自动化</h3>
           <p>工业自动化控制系统与智能管理平台解决方案。</p>
         </div>
 
         <div class="service-card">
-          <img src="images/maintenance.png" alt="维护服务">
+          <img src="https://cdn.jsdelivr.net/gh/leolqc76/BYCompany-Profile@main/images/maintenance.png" alt="维护服务" loading="lazy" decoding="async">
           <h3>维护服务</h3>
           <p>提供设备调试、维护升级及长期技术支持服务。</p>
         </div>
 
         <div class="service-card">
-          <img src="images/design.png" alt="工程设计">
+          <img src="https://cdn.jsdelivr.net/gh/leolqc76/BYCompany-Profile@main/images/design.png" alt="工程设计" loading="lazy" decoding="async">
           <h3>工程设计咨询</h3>
           <p>电气工程设计、项目规划与技术咨询服务。</p>
         </div>
@@ -483,11 +485,11 @@
       <div class="">
 
         <div class="" style="text-align: center;">
-		<img src="images/3333.png" alt="tmp1">
+		<img src="https://cdn.jsdelivr.net/gh/leolqc76/BYCompany-Profile@main/images/3333.webp" alt="tmp1" loading="lazy" decoding="async">
         </div>
 
         <div class="" style="text-align: center;">
-		<img src="images/4444.png" alt="tmp2">
+		<img src="https://cdn.jsdelivr.net/gh/leolqc76/BYCompany-Profile@main/images/4444.webp" alt="tmp2" loading="lazy" decoding="async">
         </div>
 
       </div>
@@ -520,15 +522,19 @@
     // Banner轮播
     const hero = document.getElementById('hero');
 
+    const CDN = 'https://cdn.jsdelivr.net/gh/leolqc76/BYCompany-Profile@main/images/';
     const images = [
-      'images/000.png',
-	  'images/111.png',
-	  'images/222.png'
+      CDN + '000.webp',
+      CDN + '111.webp',
+      CDN + '222.webp'
     ];
 
     let i = 0;
 
     hero.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url(${images[0]})`;
+
+    // 预加载轮播的另外两张图，避免切换时闪烁
+    images.slice(1).forEach(src => { const l = new Image(); l.src = src; });
 
     setInterval(() => {
       i = (i + 1) % images.length;
